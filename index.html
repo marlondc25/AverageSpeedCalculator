@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* Set the background color to white */
+            color: #000; /* Set the text color to black */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #banner {
+            width: 100%;
+            max-width: 1000px; /* Adjust the maximum width as needed */
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #28a745;
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 10px;
+        }
+
+        input,
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result-container {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+        }
+
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        #links {
+            margin-top: 20px;
+        }
+
+        #links a {
+            margin: 0 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <title>Marlon Rides Average Speed Calculator</title>
+</head>
+
+<body>
+    <img id="banner" src="your-banner-image.jpg" alt="Banner Image"> <!-- Replace 'your-banner-image.jpg' with your actual image path -->
+
+    <h2>Marlon Rides Average Speed Calculator</h2>
+    <h3>Get your average speed on the trail from your last race and improve your next ride on the trail.</h3>
+
+    <label for="distance">Trail Distance (km):</label>
+    <input type="number" id="distance" placeholder="Enter distance in km" step="any" value="2.8">
+
+    <label for="time">Finished Time (mm:ss.sss):</label>
+    <input type="text" id="time" placeholder="Enter finished time (mm:ss.sss)" value="6:17.463">
+
+    <button onclick="calculateAverageSpeed()">Get Average Speed</button>
+
+    <div id="result-container">
+        <p id="result"></p>
+    </div>
+
+    <div id="links">
+        <h5>Note: This result is not your Maximum or minumum speed on the trail, please be noted that this is just a average speed, your turning speed and speed on the highspeed sections are diffirent. you can use this as reference on your trackread and practices. ridesafe! </h5>
+        <h4>For more Mountain Biking , Race POV, Downhill and enduro races contents please subscribe to my channel, your support will be appreaciated. Thank you so much!</h4>
+        <a href="https://www.youtube.com/channel/UCZf9F5qpi3-uWI33U6KOTRA" target="_blank">Youtube</a>
+        <a href="https://www.facebook.com/MrlnRides" target="_blank">Facebook</a>
+    </div>
+
+    <script>
+        function calculateAverageSpeed() {
+            // Get input values
+            var distanceInKm = parseFloat(document.getElementById('distance').value);
+            var timeInput = document.getElementById('time').value;
+
+            // Parse time input in the format mm:ss.sss
+            var timeParts = timeInput.split(':');
+            var minutes = parseFloat(timeParts[0]);
+            var seconds = parseFloat(timeParts[1]);
+            var milliseconds = parseFloat(timeParts[2] || 0);
+
+            // Convert time to hours
+            var timeInHours = (minutes * 60 + seconds + milliseconds / 1000) / 3600;
+
+            // Calculate average speed directly in km/h
+            var averageSpeed = distanceInKm / timeInHours;
+
+            // Display the result
+            document.getElementById('result').innerHTML = 'Average Speed: ' + averageSpeed.toFixed(2) + ' km/h';
+        }
+    </script>
+    
+</body>
+
+</html>
